@@ -3,7 +3,7 @@ var router = express.Router();
 const recipeModel = require("./../models/recipeModel");
 
 
-/* GET users listing. */
+/* post a new recipe */
 router.post('/addrecipe', function(req, res, next) {
   const recipe = new recipeModel({
     Title: req.body.title,
@@ -18,5 +18,17 @@ router.post('/addrecipe', function(req, res, next) {
       res.send('Recipe Saved')
     });
 });
+
+//Get all recipes
+
+router.get('/', function(req, res, next) {
+
+  recipeModel.find().sort('-dateAdded').exec((err, recipes) => {
+    if (err) throw err
+    res.send(JSON.stringify(recipes))
+  })
+  
+});
+
 
 module.exports = router;
