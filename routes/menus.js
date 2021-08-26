@@ -19,7 +19,7 @@ router.post('/addmenu', function (req, res, next) {
 router.get('/', function (req, res, next) {
     menuModel
         .find()
-        .populate('recipe')
+        .populate('Recipes')
         .sort('-dateAdded')
         .exec((err, recipes) => {
             if (err) throw err
