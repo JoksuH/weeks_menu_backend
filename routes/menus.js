@@ -2,7 +2,7 @@ var express = require('express')
 var router = express.Router()
 const menuModel = require('./../models/menuModel')
 
-/* post a new recipe */
+/* post a menu recipe */
 router.post('/addmenu', function (req, res, next) {
     const menu = new menuModel({
         Recipes: req.body.recipes,
@@ -25,6 +25,13 @@ router.get('/', function (req, res, next) {
             if (err) throw err
             res.send(JSON.stringify(recipes))
         })
+})
+
+router.delete('/:menuID', function (req, res, next) {
+    menuModel.deleteOne({ _id: req.params.menuID }).exec((err, result) => {
+        if (err) throw err
+        res.send(`Menu with the id ${req.params.postID} deleted`)
+    })
 })
 
 module.exports = router
