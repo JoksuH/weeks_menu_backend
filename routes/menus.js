@@ -30,7 +30,7 @@ router.get('/', function (req, res, next) {
 router.delete('/:menuID', function (req, res, next) {
     menuModel.deleteOne({ _id: req.params.menuID }).exec((err, result) => {
         if (err) throw err
-        res.send(`Menu with the id ${req.params.postID} deleted`)
+        res.send(`Menu with the id ${req.params.menuID} deleted`)
     })
 })
 
